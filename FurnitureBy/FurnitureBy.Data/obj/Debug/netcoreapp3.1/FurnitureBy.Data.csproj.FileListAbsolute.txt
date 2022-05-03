@@ -1,0 +1,15 @@
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\bin\Debug\netcoreapp3.1\FurnitureBy.Data.deps.json
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\bin\Debug\netcoreapp3.1\FurnitureBy.Data.runtimeconfig.json
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\bin\Debug\netcoreapp3.1\FurnitureBy.Data.runtimeconfig.dev.json
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\bin\Debug\netcoreapp3.1\FurnitureBy.Data.dll
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\bin\Debug\netcoreapp3.1\FurnitureBy.Data.pdb
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\bin\Debug\netcoreapp3.1\FurnitureBy.Domain.dll
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\bin\Debug\netcoreapp3.1\FurnitureBy.Domain.pdb
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.csproj.AssemblyReference.cache
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.AssemblyInfoInputs.cache
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.AssemblyInfo.cs
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.csproj.CoreCompileInputs.cache
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.csproj.CopyComplete
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.dll
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.pdb
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy.Data\obj\Debug\netcoreapp3.1\FurnitureBy.Data.genruntimeconfig.cache
