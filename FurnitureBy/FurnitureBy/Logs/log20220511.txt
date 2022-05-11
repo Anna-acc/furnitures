@@ -1,0 +1,5 @@
+2022-05-11 22:04:01 [INF] <> Starting web host. {  }
+2022-05-11 22:04:02 [INF] <Microsoft.Hosting.Lifetime> Application started. Press Ctrl+C to shut down. {  }
+2022-05-11 22:04:02 [INF] <Microsoft.Hosting.Lifetime> Hosting environment: Development {  }
+2022-05-11 22:04:02 [INF] <Microsoft.Hosting.Lifetime> Content root path: D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy {  }
+2022-05-11 22:04:02 [ERR] <FurnitureBy.Controllers.HomeController> AAA Error!!! { ActionId: "17b98d32-a443-4884-b189-dba8137cbdca", ActionName: "FurnitureBy.Controllers.HomeController.Index (FurnitureBy)", RequestId: "80000006-0004-fd00-b63f-84710c7967bb", RequestPath: "/", SpanId: "|422c9f70-4a6d4070a0e6974d.", TraceId: "422c9f70-4a6d4070a0e6974d", ParentId: "" }

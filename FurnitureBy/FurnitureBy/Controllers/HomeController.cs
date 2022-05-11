@@ -21,6 +21,7 @@ namespace FurnitureBy.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogError("AAA Error!!!");
             return View();
         }
 

@@ -73,3 +73,4 @@ D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy
 D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy\bin\Debug\netcoreapp3.1\Serilog.Sinks.Debug.dll
 D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
 D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy\bin\Debug\netcoreapp3.1\Serilog.Expressions.dll
+D:\универ\6 семестр\тритпо\furnitures\FurnitureBy\FurnitureBy\bin\Debug\netcoreapp3.1\Serilog.Sinks.Async.dll
