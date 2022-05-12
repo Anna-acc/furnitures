@@ -13,3 +13,8 @@ gulp.task("styles", function () {
         .pipe(sass())
         .pipe(gulp.dest(paths.webroot + '/css'));
 });
+
+gulp.task('copyfonts', function () {
+    return gulp.src('Fonts/*')
+        .pipe(gulp.dest(paths.webroot + '/fonts'));
+});

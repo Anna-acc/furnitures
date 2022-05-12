@@ -1,4 +1,19 @@
 ﻿$main-font: Ablation;
+$background: #F8F7F4;
+
+@font-face {
+    font-family: Nickainley;
+    src: url(/Fonts/Nickainley.otf);
+}
+@font-face {
+    font-family: Ablation;
+    src: url(/Fonts/Ablation.otf);
+}
+
 body {
     font-family: $main-font;
+    background-color: $background;
+}
+.font-nikainley {
+    font-family: Nickainley;
 }
