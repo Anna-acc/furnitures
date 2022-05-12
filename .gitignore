@@ -2,3 +2,9 @@
 *.log
 FurnitureBy/.vs/FurnitureBy/DesignTimeBuild/.dtbcache.v2
 FurnitureBy/.vs/FurnitureBy/v16/.suo
+FurnitureBy/FurnitureBy/wwwroot/*
+FurnitureBy/FurnitureBy/node_modules/*
+FurnitureBy/FurnitureBy/bin/*
+FurnitureBy/FurnitureBy/obj/*
+FurnitureBy/FurnitureBy/Logs/*
+package-lock.json
