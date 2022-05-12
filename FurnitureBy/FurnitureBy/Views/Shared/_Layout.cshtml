@@ -3,31 +3,28 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FurnitureBy</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FurnitureBy</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <div class="container mb-4">
+            <div class="row d-flex mb-2">
+                <div class="col-6">
+                    <img src="" alt="Лого сайта" />
+                </div>
+                <div class="col-6 text-right">
+                    <a asp-controller="User" asp-action="Login">Вход</a>|
+                    <a asp-controller="User" asp-action="Register">Регистрация</a>
                 </div>
             </div>
-        </nav>
+            <div id="menu-block" class="row d-flex">
+                <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Catalog">Каталог</a></div>
+                <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Index">Главная</a></div>
+                <div class="col-4 menu-item text-center"><a asp-controller="Order" asp-action="Index">Заказ</a></div>
+            </div>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -37,7 +34,6 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - FurnitureBy - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

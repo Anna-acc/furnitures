@@ -1,5 +1,6 @@
 ﻿$main-font: Ablation;
 $background: #F8F7F4;
+$color-menu: #433831;
 
 @font-face {
     font-family: Nickainley;
@@ -16,4 +17,29 @@ body {
 }
 .font-nikainley {
     font-family: Nickainley;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+header {
+    font-size: 20px;
+    color: $color-menu;
+
+    #menu-block {
+        border-top: 5px dashed $color-menu;
+        border-bottom: 5px dashed $color-menu;
+    }
+
+    .menu-item {
+        border-left: 5px dashed $color-menu;
+    }
+
+    .menu-item:first-child {
+        border-left: none;
+    }
 }
