@@ -8,3 +8,10 @@ FurnitureBy/FurnitureBy/bin/*
 FurnitureBy/FurnitureBy/obj/*
 FurnitureBy/FurnitureBy/Logs/*
 package-lock.json
+FurnitureBy/FurnitureBy.Data/bin/*
+FurnitureBy/FurnitureBy.Data/obj/*
+FurnitureBy/FurnitureBy.Services/bin/*
+FurnitureBy/FurnitureBy.Services/obj/*
+FurnitureBy/FurnitureBy.Domain/obj/*
+FurnitureBy/FurnitureBy.Domain/bin/*
+
