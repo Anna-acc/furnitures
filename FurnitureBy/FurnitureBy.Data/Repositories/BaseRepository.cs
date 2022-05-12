@@ -62,6 +62,30 @@ namespace FurnitureBy.Data.Repositories
             return await _dbSet.FindAsync(id);
         }
 
+        public async Task<T> Get(Func<IQueryable<T>, IQueryable<T>>[] includes = null,
+                                 Expression<Func<T, bool>> filter = null,
+                                 Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+        {
+            var query = _dbSet.AsNoTracking();
+
+            foreach (var include in includes)
+            {
+                query = include(query);
+            }
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            return await query.FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<T>> GetFilter(Func<IQueryable<T>, IQueryable<T>>[] includes = null,
                                                      Expression<Func<T, bool>> filter = null,
                                                      Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)

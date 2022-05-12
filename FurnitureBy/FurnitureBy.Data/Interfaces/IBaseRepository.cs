@@ -58,6 +58,17 @@ namespace FurnitureBy.Data.Interfaces
         Task<T> Get(string id);
 
         /// <summary>
+        /// Возвращает первую сущность по параметрам.
+        /// </summary>
+        /// <param name="includes">Включения таблиц.</param>
+        /// <param name="filter">Фильтры.</param>
+        /// <param name="orderBy">Сортировка.</param>
+        /// <returns>Коллекция сущностей.</returns>
+        Task<T> Get(Func<IQueryable<T>, IQueryable<T>>[] includes = null,
+                                 Expression<Func<T, bool>> filter = null,
+                                 Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
+
+        /// <summary>
         /// Возвращает коллекцию сущностей по параметрам.
         /// </summary>
         /// <param name="includes">Включения таблиц.</param>
