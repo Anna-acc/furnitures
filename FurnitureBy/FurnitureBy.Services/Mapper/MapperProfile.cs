@@ -10,6 +10,12 @@ namespace FurnitureBy.Services.Mapper
         public MapperProfile()
         {
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<OrderProducts, OrderProductsDto>().ReverseMap();
+            CreateMap<ProductCategories, ProductCategoriesDto>().ReverseMap();
         }
     }
 }
