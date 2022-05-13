@@ -1,5 +1,6 @@
 using FurnitureBy.Data.Context;
 using FurnitureBy.Services.Extensions;
+using FurnitureBy.Services.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,8 @@ namespace FurnitureBy
                 options.UseNpgsql(Configuration.GetConnectionString("Connection")));
 
             services.AddBaseServiceCollection();
+
+            services.AddAutoMapper(typeof(MapperProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
