@@ -1,6 +1,7 @@
 using FurnitureBy.Data.Context;
 using FurnitureBy.Services.Extensions;
 using FurnitureBy.Services.Mapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,12 @@ namespace FurnitureBy
             services.AddBaseServiceCollection();
 
             services.AddAutoMapper(typeof(MapperProfile));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/User/Login");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +62,7 @@ namespace FurnitureBy
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

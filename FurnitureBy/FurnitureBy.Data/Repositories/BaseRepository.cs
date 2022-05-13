@@ -68,9 +68,12 @@ namespace FurnitureBy.Data.Repositories
         {
             var query = _dbSet.AsNoTracking();
 
-            foreach (var include in includes)
+            if (includes != null)
             {
-                query = include(query);
+                foreach (var include in includes)
+                {
+                    query = include(query);
+                }
             }
 
             if (filter != null)
@@ -92,9 +95,12 @@ namespace FurnitureBy.Data.Repositories
         {
             var query = _dbSet.AsNoTracking();
 
-            foreach (var include in includes)
+            if (includes != null)
             {
-                query = include(query);
+                foreach (var include in includes)
+                {
+                    query = include(query);
+                }
             }
 
             if (filter != null)
