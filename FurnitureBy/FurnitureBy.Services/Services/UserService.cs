@@ -22,5 +22,22 @@ namespace FurnitureBy.Services.Services
         {
             return _mapper.Map<UserDto>(await _userRepository.Get(filter: x => x.Login == login && x.Password == password));
         }
+
+        public async Task<UserDto> GetUser(string login)
+        {
+            return _mapper.Map<UserDto>(await _userRepository.Get(filter: x => x.Login == login));
+        }
+
+        public async Task AddUser(UserDto userDto)
+        {
+            var user = _mapper.Map<User>(userDto);
+            await _userRepository.Add(user);
+        }
+
+        public async Task EditUser(UserDto userDto)
+        {
+            var user = _mapper.Map<User>(userDto);
+            await _userRepository.Update(user);
+        }
     }
 }

@@ -12,7 +12,6 @@ $color-menu: #433831;
 }
 
 body {
-    font-family: $main-font;
     background-color: $background;
 }
 .font-nikainley {
@@ -27,6 +26,7 @@ a:hover {
     color: inherit;
 }
 header {
+    font-family: $main-font;
     font-size: 20px;
     color: $color-menu;
 

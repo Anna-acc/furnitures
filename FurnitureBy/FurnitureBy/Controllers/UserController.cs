@@ -44,11 +44,57 @@ namespace FurnitureBy.Controllers
             return View(userModel);
         }
 
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(UserDto user)
+        {
+            if (ModelState.IsValid)
+            {
+                user.IsActive = true;
+                user.IsConfirm = true;
+
+                await _userService.AddUser(user);
+
+                return RedirectToAction("Login", "User");
+            }
+            return View(user);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userService.GetUser(User.Identity.Name);
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Profile(UserDto user)
+        {
+            if (ModelState.IsValid)
+            {
+                await _userService.EditUser(user);
+
+                return RedirectToAction("Profile", "User");
+            }
+            return View(user);
+        }
+
         private async Task Authenticate(UserDto user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Name),
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, user.RoleId.ToString())
             };
             

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FurnitureBy.Services.Models
 {
@@ -13,16 +14,29 @@ namespace FurnitureBy.Services.Models
         /// <summary>
         /// Логин.
         /// </summary>
+        [Required(ErrorMessage = "Не указан логин")]
         public string Login { get; set; }
 
         /// <summary>
         /// Пароль.
         /// </summary>
+        [Required(ErrorMessage = "Не указан пароль")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        /// <summary>
+        /// Подтверждение пароля.
+        /// </summary>
+        [Required(ErrorMessage = "Подтвердите пароль")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        public string ConfirmPassword { get; set; }
 
         /// <summary>
         /// Email.
         /// </summary>
+        [Required(ErrorMessage = "Не указан Email")]
+        [EmailAddress]
         public string Email { get; set; }
 
         /// <summary>
@@ -33,11 +47,13 @@ namespace FurnitureBy.Services.Models
         /// <summary>
         /// Фамилия.
         /// </summary>
+        [Required(ErrorMessage = "Не указана фамилия")]
         public string Surname { get; set; }
 
         /// <summary>
         /// Имя.
         /// </summary>
+        [Required(ErrorMessage = "Не указано Имя")]
         public string Name { get; set; }
 
         /// <summary>
@@ -48,6 +64,9 @@ namespace FurnitureBy.Services.Models
         /// <summary>
         /// Дата рождения.
         /// </summary>
+        [Required(ErrorMessage = "Не указана дата рождения")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime DateBirth { get; set; }
 
         /// <summary>

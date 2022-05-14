@@ -14,10 +14,21 @@
                 <div class="col-6">
                     <img src="" alt="Лого сайта" />
                 </div>
-                <div class="col-6 text-right">
-                    <a asp-controller="User" asp-action="Login">Вход</a>|
-                    <a asp-controller="User" asp-action="Register">Регистрация</a>
-                </div>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="col-6 text-right">
+                        <a asp-controller="User" asp-action="Login">Вход</a>|
+                        <a asp-controller="User" asp-action="Register">Регистрация</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-6 text-right">
+                        <span>@User.Identity.Name</span>
+                        <a asp-controller="User" asp-action="Profile">Личный кабинет</a>|
+                        <a asp-controller="User" asp-action="Logout">Выход</a>
+                    </div>
+                }
             </div>
             <div id="menu-block" class="row d-flex">
                 <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Catalog">Каталог</a></div>
