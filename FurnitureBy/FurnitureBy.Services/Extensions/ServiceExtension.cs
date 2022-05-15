@@ -18,6 +18,7 @@ namespace FurnitureBy.Services.Extensions
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             return services;
         }

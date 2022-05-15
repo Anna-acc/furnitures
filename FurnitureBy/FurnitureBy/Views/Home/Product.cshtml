@@ -4,6 +4,14 @@
     ViewData["Title"] = Model.Name;
 }
 
+@section Scripts {
+    <script>
+        $(function () {
+            $("#AddToBasket").click(function () { AddToBasket('@(Model.Code)'); });
+    });
+    </script> 
+}
+
 <h2>@Model.Name</h2>
 
 <div class="row d-flex">
@@ -40,5 +48,10 @@
             <div>Механизм: @Model.Gear</div>
         }
         <div>@(Model.IsAvaible ? "Есть в наличии" : "Нет в наличии")</div>
+
+        @if (User.IsInRole("3"))
+        {
+            <button id="AddToBasket" value="Добавить в корзину">Добавить в корзину</button>
+        }
     </div>
 </div>
