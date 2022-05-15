@@ -1,0 +1,25 @@
+﻿@model List<FurnitureBy.Services.Models.CategoryDto>
+@{
+    ViewData["Title"] = "Категория";
+}
+
+<div class="row d-flex">
+    <div class="@(ViewBag.AdditionalCategory != null ? "col-6" : "col-12")">
+        <h2>@FurnitureBy.Domain.Base.Base.GetNameMainCategory(Model.FirstOrDefault().ParentId)</h2>
+        @foreach (var category in Model)
+        {
+            <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id">@category.Name</a></div>
+        }
+    </div>
+
+    @if (ViewBag.AdditionalCategory != null)
+    {
+        <div class="col-6">
+            <h2>Стулья</h2>
+            @foreach (var category in ViewBag.AdditionalCategory)
+            {
+                <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id">@category.Name</a></div>
+            }
+        </div>
+    }
+</div>

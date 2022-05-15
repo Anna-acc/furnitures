@@ -1,0 +1,18 @@
+﻿@model List<FurnitureBy.Services.Models.ProductDto>
+@{
+    ViewData["Title"] = ViewBag.NameCategory;
+}
+
+<div class="row d-flex">
+    @foreach (var product in Model)
+    {
+        <div class="col-4">
+            <a asp-action="Product" asp-controller="Home" asp-route-code="@product.Code">
+                <div class="col-12">
+                    <img src="~/ImagesProduct/@(product.Code).jpg" width="150"/>
+                    <div class="col-12">@product.Name</div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

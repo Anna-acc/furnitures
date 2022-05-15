@@ -38,5 +38,19 @@ namespace FurnitureBy.Services.Interfaces
         /// </summary>
         /// <param name="productDto">Объект товара</param>
         Task EditProduct(ProductDto productDto);
+
+        /// <summary>
+        /// Получает разделы для отображениия по главному разделу
+        /// </summary>
+        /// <param name="mainCategoryId">Код главного раздела</param>
+        /// <returns>Список разделов</returns>
+        Task<IList<CategoryDto>> GetCategoriesFromMainCategory(int mainCategoryId);
+
+        /// <summary>
+        /// Получает все товары в заданной категории
+        /// </summary>
+        /// <param name="categoryId">Id категории</param>
+        /// <returns>Список товаров</returns>
+        Task<IList<ProductDto>> GetProductsByCategory(string categoryId);
     }
 }

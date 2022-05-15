@@ -88,5 +88,15 @@ namespace FurnitureBy.Services.Services
                 await transaction.CommitAsync();
             }
         }
+
+        public async Task<IList<CategoryDto>> GetCategoriesFromMainCategory(int mainCategoryId)
+        {
+            return _mapper.Map<IList<CategoryDto>>(await _categories.GetFilter(filter: x => x.ParentId == mainCategoryId && x.IsShow));
+        }
+
+        public async Task<IList<ProductDto>> GetProductsByCategory(string categoryId)
+        {
+            return _mapper.Map<IList<ProductDto>>(await _products.GetFilter(filter: x => x.Categories.Any(y => y.CategoryId == categoryId) && x.IsActive));
+        }
     }
 }

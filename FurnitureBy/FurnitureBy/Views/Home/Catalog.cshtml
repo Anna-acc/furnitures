@@ -1,0 +1,35 @@
+﻿@using FurnitureBy.Domain.Enums;
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<h2>Каталог</h2>
+
+<div class="text-center">
+    <div class="row d-flex">
+        <div class="col-6 font-nikainley">
+            <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Bads)">
+                <img src="../Content/MainCategoryImages/Bads.jpg" alt="Кровати" />
+                <div class="col-12">Кровати</div>
+            </a>
+        </div>
+        <div class="col-6 font-nikainley">
+            <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Sofas)">
+                <img src="../Content/MainCategoryImages/Sofas.jpg" alt="Диваны" />
+                <div class="col-12">Диваны</div>
+            </a>
+        </div>
+        <div class="col-6 font-nikainley">
+            <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Closets)">
+                <img src="../Content/MainCategoryImages/Closets.jpg" alt="Шкафы" />
+                <div class="col-12">Шкафы</div>
+            </a>
+        </div>
+        <div class="col-6 font-nikainley">
+            <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Tables)">
+                <img src="../Content/MainCategoryImages/Tables.jpg" alt="Столы и стулья" />
+                <div class="col-12">Столы и стулья</div>
+            </a>
+        </div>
+    </div>
+</div>

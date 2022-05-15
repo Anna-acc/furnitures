@@ -1,0 +1,44 @@
+﻿@model FurnitureBy.Services.Models.ProductDto
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h2>@Model.Name</h2>
+
+<div class="row d-flex">
+    <div class="col-6">
+        <img src="~/ImagesProduct/@(Model.Code).jpg" width="300" />
+        <div>
+            @Model.Description
+        </div>
+    </div>
+    <div class="col-6">
+        <div>Цена: @(Model.Price.HasValue ? string.Format("0.00", Model.Price.Value) : "Не установлено")</div>
+        @if (Model.Width.HasValue)
+        {
+            <div>Ширина: @Model.Width.Value</div>
+        }
+        @if (Model.Height.HasValue)
+        {
+            <div>Высота: @Model.Height.Value</div>
+        }
+        @if (Model.Length.HasValue)
+        {
+            <div>Длина: @Model.Length.Value</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Color))
+        {
+            <div>Цвет: @Model.Color</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Material))
+        {
+            <div>Материал: @Model.Material</div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Gear))
+        {
+            <div>Механизм: @Model.Gear</div>
+        }
+        <div>@(Model.IsAvaible ? "Есть в наличии" : "Нет в наличии")</div>
+    </div>
+</div>
