@@ -17,6 +17,7 @@ namespace FurnitureBy.Services.Extensions
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IProductService, ProductService>();
 
             return services;
         }

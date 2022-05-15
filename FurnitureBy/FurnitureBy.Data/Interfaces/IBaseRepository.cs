@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -78,5 +79,11 @@ namespace FurnitureBy.Data.Interfaces
         Task<IEnumerable<T>> GetFilter(Func<IQueryable<T>, IQueryable<T>>[] includes = null,
                                        Expression<Func<T, bool>> filter = null,
                                        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
+        
+        /// <summary>
+        /// Начинает транзакцию
+        /// </summary>
+        /// <returns>Объект транзакции</returns>
+        Task<IDbContextTransaction> BeginTransaction();
     }
 }

@@ -1,0 +1,37 @@
+﻿@model IList<FurnitureBy.Services.Models.ProductDto>
+
+@{
+    ViewData["Title"] = "Список товаров";
+}
+
+<h2>Список товаров</h2>
+
+<a asp-action="Add" asp-controller="Product">Добавить</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Действия</th>
+            <th>Код товара</th>
+            <th>Наименование</th>
+            <th>Категории</th>
+            <th>Стоимость</th>
+            <th>В наличии</th>
+            <th>Активен</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td><a asp-action="Edit" asp-controller="Product" asp-route-code="@product.Code">Редактировать</a></td>
+                <td>@product.Code</td>
+                <td>@product.Name</td>
+                <td>@string.Join(", ", product.Categories.Select(x => x.Category.Name))</td>
+                <td>@product.Price</td>
+                <td>@product.IsAvaible</td>
+                <td>@product.IsActive</td>
+            </tr>
+        }
+    </tbody>
+</table>

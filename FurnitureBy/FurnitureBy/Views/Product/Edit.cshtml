@@ -1,0 +1,118 @@
+﻿@model FurnitureBy.Services.Models.ProductDto
+
+@{
+    var isEdit = ViewBag.Mode == "Edit";
+    var modeRus = isEdit ? "Редактирование" : "Добавление";
+
+    ViewData["Title"] = $"{modeRus} товара";
+}
+
+<h2>@modeRus товара</h2>
+
+
+<form asp-action="@ViewBag.Mode" asp-controller="Product" asp-anti-forgery="true" enctype="multipart/form-data">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <input hidden asp-for="Code" />
+        <div class="form-group">
+            <label asp-for="Code">Код товара</label>
+            @if (isEdit)
+            {
+                <input type="text" asp-for="Code" readonly />
+            }
+            else
+            {
+                <input type="text" asp-for="Code" />
+            }
+            <span asp-validation-for="Code"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name">Наименование</label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Описание</label>
+            <textarea asp-for="Description"></textarea>
+            <span asp-validation-for="Description"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Категории</label>
+            <select asp-for="CategoryIds" class="selectpicker" multiple>
+                @foreach (var category in Model.AllCategories)
+                {
+                    if (Model.CategoryIds.Any(x => x == category.Id))
+                    {
+                        <option value="@category.Id" selected>@category.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                }
+            </select>
+            <span></span>
+        </div>
+
+        @if (isEdit)
+        {
+            <div class="form-group">
+                <img src="~/ImagesProduct/@(Model.Code).jpg" width="100"/>
+            </div>
+        }
+
+        <div class="form-group">
+            <label asp-for="Image">Картинка</label>
+            <input type="file" asp-for="Image" />
+            <span asp-validation-for="Image"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Width">Ширина</label>
+            <input asp-for="Width" />
+            <span asp-validation-for="Width"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Height">Высота</label>
+            <input asp-for="Height" />
+            <span asp-validation-for="Height"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Length">Длина</label>
+            <input asp-for="Length" />
+            <span asp-validation-for="Length"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Color">Цвет</label>
+            <input asp-for="Color" />
+            <span asp-validation-for="Color"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Material">Материал</label>
+            <input asp-for="Material" />
+            <span asp-validation-for="Material"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gear">Механизм</label>
+            <input asp-for="Gear" />
+            <span asp-validation-for="Gear"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price">Стоимость</label>
+            <input asp-for="Price" />
+            <span asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="IsAvaible">Есть в наличии</label>
+            <input asp-for="IsAvaible" />
+        </div>
+        <div class="form-group">
+            <label asp-for="IsActive">Активен</label>
+            <input asp-for="IsActive" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@(isEdit ? "Редактировать": "Добавить")" class="btn btn-outline-dark" />
+            <a asp-action="AllProducts" asp-controller="Product">Отмена</a>
+        </div>
+    </div>
+</form>

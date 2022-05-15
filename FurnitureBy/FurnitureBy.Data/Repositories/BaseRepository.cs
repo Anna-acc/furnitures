@@ -1,6 +1,7 @@
 ﻿using FurnitureBy.Data.Context;
 using FurnitureBy.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,6 +115,11 @@ namespace FurnitureBy.Data.Repositories
             }
 
             return await query.ToListAsync();
+        }
+
+        public async Task<IDbContextTransaction> BeginTransaction()
+        {
+            return await _context.Database.BeginTransactionAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FurnitureBy.Services.Models
 {
@@ -7,16 +8,19 @@ namespace FurnitureBy.Services.Models
         /// <summary>
         /// Код товара.
         /// </summary>
+        [Required(ErrorMessage = "Не указа код товара")]
         public string Code { get; set; }
 
         /// <summary>
         /// Наименование товара.
         /// </summary>
+        [Required(ErrorMessage = "Не указано наименование товара")]
         public string Name { get; set; }
 
         /// <summary>
         /// Описание товара.
         /// </summary>
+        [Required(ErrorMessage = "Не указо описание товара товара")]
         public string Description { get; set; }
 
         /// <summary>
@@ -78,5 +82,9 @@ namespace FurnitureBy.Services.Models
         /// Заказы, в которые входит товар.
         /// </summary>
         public virtual ICollection<OrderProductsDto> Orders { get; set; }
+
+        public ICollection<CategoryDto> AllCategories { get; set; }
+
+        public List<string> CategoryIds { get; set; } = new List<string>();
     }
 }
