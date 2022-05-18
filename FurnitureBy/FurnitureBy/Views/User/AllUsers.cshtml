@@ -1,0 +1,36 @@
+﻿@model IList<FurnitureBy.Services.Models.UserDto>
+
+@{
+    ViewData["Title"] = "Список пользователей";
+}
+
+<h2>Список пользователей</h2>
+
+<a asp-action="Add" asp-controller="User">Добавить</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Логин</th>
+            <th>ФИО</th>
+            <th>Роль</th>
+            <th>Активен</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Login</td>
+                <td>@user.Surname @user.Name @user.Patronymic</td>
+                <td>@user.Role.Name</td>
+                <td>@user.IsActive</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="User" asp-route-login="@user.Login">Редактировать</a>
+                    <a asp-action="Details" asp-controller="User" asp-route-login="@user.Login">Просмотреть</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

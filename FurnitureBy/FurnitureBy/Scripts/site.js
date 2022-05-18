@@ -23,3 +23,24 @@ function AddToBasket(code)
         }
     });
 }
+
+function ChangePassword(login, newPassword, confirmNewPassword) {
+    $.ajax({
+        async: true,
+        type: 'post',
+        url: '/User/ChangePassword',
+        data: {
+            "login": login,
+            "password": newPassword,
+            "confirmPassword": confirmNewPassword
+        },
+        success: function (data) {
+            if (data.result) {
+                alert('Пароль успешно изменен');
+            }
+            else {
+                alert(data.message);
+            }
+        }
+    });
+}

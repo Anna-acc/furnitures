@@ -1,4 +1,5 @@
 ﻿using FurnitureBy.Services.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FurnitureBy.Services.Interfaces
@@ -31,5 +32,17 @@ namespace FurnitureBy.Services.Interfaces
         /// </summary>
         /// <param name="userDto">Модель пользователя</param>
         Task EditUser(UserDto userDto);
+
+        /// <summary>
+        /// Возвращает всех имеющихся пользователей
+        /// </summary>
+        /// <returns>Список пользователей</returns>
+        Task<IList<UserDto>> GetAllUsers();
+
+        /// <summary>
+        /// Возвращает все имеющиеся в системе роли
+        /// </summary>
+        /// <returns>Список ролей</returns>
+        Task<IList<RoleDto>> GetAllRoles();
     }
 }

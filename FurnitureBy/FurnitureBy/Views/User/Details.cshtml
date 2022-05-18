@@ -1,0 +1,17 @@
+﻿@model FurnitureBy.Services.Models.UserDto;
+
+@{
+    ViewData["Title"] = "Просмотр информации о пользователе";
+}
+
+<h2>Просмотр информации о пользователе</h2>
+
+<div>
+    <div>Логин: @Model.Login</div>
+    <div>ФИО: @Model.Surname @Model.Name @Model.Patronymic</div>
+    <div>Email: @Model.Email</div>
+    <div>Телефон: @Model.Phone</div>
+    <div>Дата рождения: @Model.DateBirth.ToString("dd.MM.yyyy")</div>
+    <div>Роль: @Model.Role.Name</div>
+    <div>Активность: @Model.IsActive</div>
+</div>
