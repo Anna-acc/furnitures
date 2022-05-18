@@ -1,0 +1,52 @@
+﻿@model IList<FurnitureBy.Services.Models.OrderDto>
+
+@{
+    ViewData["Title"] = "Список заказов";
+}
+
+<h2>Список заказов</h2>
+
+@if(User.IsInRole("3"))
+{
+    <a asp-action="Basket" asp-controller="Order">Корзина</a>
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Номер заказа</th>
+            <th>Дата заказа</th>
+            <th>Статус</th>
+            <th>Товары</th>
+            <th>Общая стоимость</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.NumberOrder</td>
+                <td>@order.DateOrder.Value.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@FurnitureBy.Domain.Base.Base.GetNameStatusOrder(order.Status)</td>
+                <td>@string.Join(", ", order.Products.Select(x => x.Product.Name))</td>
+                <td>@order.Price</td>
+                <td>
+                    <a asp-action="ShowOrder" asp-controller="Order" asp-route-numberOrder="@order.NumberOrder">Просмотреть</a>
+                    @if (!User.IsInRole("3"))
+                    {
+                        @if (order.Status == 1)
+                        {
+                            <a asp-action="SetStatus" asp-controller="Order" asp-route-status="2" asp-route-numberOrder="@order.NumberOrder">Подтвердить</a>
+                            <a asp-action="SetStatus" asp-controller="Order" asp-route-status="3" asp-route-numberOrder="@order.NumberOrder">Отклонить</a>
+                        }
+                        @if (order.Status == 2)
+                        {
+                            <a asp-action="SetStatus" asp-controller="Order" asp-route-status="4" asp-route-numberOrder="@order.NumberOrder">Отметить доставку</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

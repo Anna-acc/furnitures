@@ -17,11 +17,13 @@ namespace FurnitureBy.Services.Services
     {
         private readonly IBaseRepository<Order> _order;
         private readonly IBaseRepository<OrderProducts> _orderProducts;
+        private readonly IMapper _mapper;
 
-        public OrderService(IBaseRepository<Order> order, IBaseRepository<OrderProducts> orderProducts)
+        public OrderService(IBaseRepository<Order> order, IBaseRepository<OrderProducts> orderProducts, IMapper mapper)
         {
             _order = order;
             _orderProducts = orderProducts;
+            _mapper = mapper;
         }
 
         public async Task AddNewBasket(string userId)
@@ -49,6 +51,70 @@ namespace FurnitureBy.Services.Services
             {
                 return false;
             }
+        }
+
+        public async Task<OrderDto> GetBasket(string userLogin)
+        {
+            var include = new Func<IQueryable<Order>, IQueryable<Order>>[]
+                {
+                    x => x.Include(y => y.Products).ThenInclude(y => y.Product)
+                };
+            var basket = await _order.Get(filter: x => x.User.Login == userLogin && x.Status == 0, includes: include);
+            basket.Price = basket.Products?.Sum(x => x.Product.Price * x.Count);
+
+            return _mapper.Map<OrderDto>(basket);
+        }
+
+        public async Task PlaceOrder(OrderDto orderDto)
+        {
+            using (var transaction = await _order.BeginTransaction())
+            {
+                var order = _mapper.Map<Order>(orderDto);
+                order.DateOrder = DateTime.Now;
+                order.Status = 1;
+
+                await _order.Update(order);
+                await AddNewBasket(order.IdUser);
+
+                await transaction.CommitAsync();
+            }
+        }
+
+        public async Task<IList<OrderDto>> GetAllOrders(bool isNotClient, string userName)
+        {
+             var include = new Func<IQueryable<Order>, IQueryable<Order>>[]
+                {
+                    x => x.Include(y => y.Products).ThenInclude(y => y.Product)
+                };
+
+            return _mapper.Map<IList<OrderDto>>(await _order.GetFilter(includes: include, filter: x => x.Status != 0 && (isNotClient || x.User.Name == userName)));
+        }
+
+        public async Task ChangeCount(string productOrderId, int count)
+        {
+            var productOrder = await _orderProducts.Get(productOrderId);
+            productOrder.Count += count;
+
+            await _orderProducts.Update(productOrder);
+        }
+
+        public async Task SetStatus(string numberOrder, int status)
+        {
+            var order = await _order.Get(numberOrder);
+            order.Status = status;
+
+            await _order.Update(order);
+        }
+
+        public async Task<OrderDto> GetOrder(string orderNumber)
+        {
+            var include = new Func<IQueryable<Order>, IQueryable<Order>>[]
+                {
+                    x => x.Include(y => y.Products).ThenInclude(y => y.Product)
+                };
+            var order = await _order.Get(filter: x => x.NumberOrder == orderNumber, includes: include);
+
+            return _mapper.Map<OrderDto>(order);
         }
     }
 }

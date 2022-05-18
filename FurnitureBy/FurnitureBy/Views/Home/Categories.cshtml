@@ -8,7 +8,7 @@
         <h2>@FurnitureBy.Domain.Base.Base.GetNameMainCategory(Model.FirstOrDefault().ParentId)</h2>
         @foreach (var category in Model)
         {
-            <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id">@category.Name</a></div>
+            <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id" asp-route-nameCategory="@category.Name">@category.Name</a></div>
         }
     </div>
 
@@ -18,7 +18,7 @@
             <h2>Стулья</h2>
             @foreach (var category in ViewBag.AdditionalCategory)
             {
-                <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id">@category.Name</a></div>
+                <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id" asp-route-nameCategory="@category.Name">@category.Name</a></div>
             }
         </div>
     }

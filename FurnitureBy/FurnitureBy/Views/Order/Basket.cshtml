@@ -1,0 +1,53 @@
+﻿@model FurnitureBy.Services.Models.OrderDto
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<h2>Ваш заказ</h2>
+
+<div class="row d-flex">
+    <table>
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>
+                        <img src="~/ImagesProduct/@(product.Product.Code).jpg" width="150" />
+                        <div class="col-12">@product.Product.Name</div>
+                    </td>
+                    <td>
+                        <a asp-action="ChangeCount" asp-controller="Order" asp-route-count="-1" asp-route-productOrderId="@product.Id">-</a>
+                        @product.Count
+                        <a asp-action="ChangeCount" asp-controller="Order" asp-route-count="1" asp-route-productOrderId="@product.Id">+</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form asp-action="PlaceOrder" asp-controller="Order" asp-anti-forgery="true">
+        <input asp-for="NumberOrder" hidden />
+        <input asp-for="IdUser" hidden />
+        <div class="form-group">
+            <label asp-for="Price">Итого к оплате: </label>
+            <input asp-for="Price" readonly />
+            <span asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address">Адрес</label>
+            <input asp-for="Address" />
+            <span asp-validation-for="Address"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NamePerson">ФИО Получателя</label>
+            <input asp-for="NamePerson" />
+            <span asp-validation-for="NamePerson"></span>
+        </div>
+        <input type="submit" value="Оформить заказ" class="btn btn-outline-dark" />
+    </form>
+</div>

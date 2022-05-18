@@ -19,5 +19,18 @@ namespace FurnitureBy.Domain.Base
             }
             return "";
         }
+
+        public static string GetNameStatusOrder(int status)
+        {
+            switch (status)
+            {
+                case 0: return "Корзина";
+                case 1: return "Заказ оформлен";
+                case 2: return "Заказ подтвержден";
+                case 3: return "Заказ доставлен";
+                case 4: return "Заказ отклонен";
+            }
+            return "";
+        }
     }
 }

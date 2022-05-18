@@ -1,0 +1,49 @@
+﻿@model FurnitureBy.Services.Models.OrderDto
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<h2>Заказ №@Model.NumberOrder</h2>
+
+<div class="row d-flex">
+    <table>
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>
+                        <img src="~/ImagesProduct/@(product.Product.Code).jpg" width="150" />
+                        <div class="col-12">@product.Product.Name</div>
+                    </td>
+                    <td>
+                        @product.Count
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-6">
+        <div>
+            Oбщая стоимость: @Model.Price
+        </div>
+        <div>
+            Дата оформления заказа: @Model.DateOrder
+        </div>
+        <div>
+            Статус заказа: @FurnitureBy.Domain.Base.Base.GetNameStatusOrder(Model.Status)
+        </div>
+        <div>
+            Адрес доставки: @Model.Address
+        </div>
+        <div>
+            ФИО Получателя: @Model.NamePerson
+        </div>
+        <a asp-action="AllOrders" asp-controller="Order">Назад</a>
+    </div>
+</div>

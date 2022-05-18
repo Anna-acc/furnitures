@@ -33,7 +33,7 @@
             <div id="menu-block" class="row d-flex">
                 <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Catalog">Каталог</a></div>
                 <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Index">Главная</a></div>
-                <div class="col-4 menu-item text-center"><a asp-controller="Order" asp-action="Index">Заказ</a></div>
+                <div class="col-4 menu-item text-center"><a asp-controller="Order" asp-action="AllOrders">Заказ</a></div>
                 @if (User.IsInRole("1"))
                 {
                     <div class="col-4 menu-item text-center"><a asp-controller="User" asp-action="AllUsers">Пользователи</a></div>
