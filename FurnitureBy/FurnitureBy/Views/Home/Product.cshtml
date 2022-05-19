@@ -9,49 +9,81 @@
         $(function () {
             $("#AddToBasket").click(function () { AddToBasket('@(Model.Code)'); });
     });
-    </script> 
+    </script>
 }
 
 <h2>@Model.Name</h2>
 
-<div class="row d-flex">
+<div class="row d-flex" style="font-size: 20px;">
     <div class="col-6">
-        <img src="~/ImagesProduct/@(Model.Code).jpg" width="300" />
+        <img src="~/ImagesProduct/@(Model.Code).jpg" width="500" />
         <div>
             @Model.Description
         </div>
     </div>
     <div class="col-6">
-        <div>Цена: @(Model.Price.HasValue ? string.Format("0.00", Model.Price.Value) : "Не установлено")</div>
+        <div class="d-flex my-2">
+            <div class="col-6">Цена</div>
+            <div class="col-6">@(Model.Price.HasValue ? string.Format("0.00", Model.Price.Value) : "Не установлено")</div>
+        </div>
         @if (Model.Width.HasValue)
         {
-            <div>Ширина: @Model.Width.Value</div>
+            <div class="d-flex my-2">
+                <div class="col-6">Ширина</div>
+                <div class="col-6">@Model.Width.Value</div>
+            </div>
         }
         @if (Model.Height.HasValue)
         {
-            <div>Высота: @Model.Height.Value</div>
+            <div class="d-flex my-2">
+                <div class="col-6">Высота</div>
+                <div class="col-6">@Model.Height.Value</div>
+            </div>
         }
         @if (Model.Length.HasValue)
         {
-            <div>Длина: @Model.Length.Value</div>
+            <div class="d-flex my-2">
+                <div class="col-6">Длина</div>
+                <div class="col-6">@Model.Length.Value</div>
+            </div>
         }
         @if (!string.IsNullOrEmpty(Model.Color))
         {
-            <div>Цвет: @Model.Color</div>
+            <div class="d-flex my-2">
+                <div class="col-6">Цвет</div>
+                <div class="col-6">@Model.Color</div>
+            </div>
         }
         @if (!string.IsNullOrEmpty(Model.Material))
         {
-            <div>Материал: @Model.Material</div>
+            <div class="d-flex my-2">
+                <div class="col-6">Материал</div>
+                <div class="col-6">@Model.Material</div>
+            </div>
         }
         @if (!string.IsNullOrEmpty(Model.Gear))
         {
-            <div>Механизм: @Model.Gear</div>
+            <div class="d-flex my-2">
+                <div class="col-6">Механизм</div>
+                <div class="col-6">@Model.Gear</div>
+            </div>
         }
-        <div>@(Model.IsAvaible ? "Есть в наличии" : "Нет в наличии")</div>
 
-        @if (User.IsInRole("3"))
+        <div class="my-2" style="font-size:25px;">@(Model.IsAvaible ? "Есть в наличии" : "Нет в наличии")</div>
+
+        @if (User.IsInRole("3") && Model.IsAvaible)
         {
-            <button id="AddToBasket" value="Добавить в корзину">Добавить в корзину</button>
+            <div class="d-flex">
+                @if (!ViewBag.IsInBasket)
+                {
+                    <button id="AddToBasket" value="Добавить в корзину" class="btn btn-primary mt-4">Добавить в корзину</button>
+                    <button id="ProductInBasket" value="Товар в корзине" disabled class="btn btn-primary mt-4 d-none">Товар в корзине</button>
+                }
+                else
+                {
+                    <button value="Товар в корзине" disabled class="btn btn-primary mt-4">Товар в корзине</button>
+                }
+            </div>
         }
     </div>
 </div>

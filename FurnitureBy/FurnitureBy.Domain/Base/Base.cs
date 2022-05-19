@@ -20,6 +20,18 @@ namespace FurnitureBy.Domain.Base
             return "";
         }
 
+        public static string GetNameImageMainCategory(int id)
+        {
+            switch (id)
+            {
+                case 1: return "Bad_Background.jpg";
+                case 2: return "Sofa_Background.jpg";
+                case 3: return "Closets_Background.jpg";
+                case 4: return "Tables_Background.jfif";
+            }
+            return "";
+        }
+
         public static string GetNameStatusOrder(int status)
         {
             switch (status)

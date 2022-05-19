@@ -13,6 +13,7 @@ $color-menu: #433831;
 
 body {
     background-color: $background;
+    font-size: 16px;
 }
 .font-nikainley {
     font-family: Nickainley;
@@ -42,4 +43,88 @@ header {
     .menu-item:first-child {
         border-left: none;
     }
+}
+
+.main-title {
+    font-family: Nickainley;
+    font-size: 26px;
+}
+
+.main-catalog-block {
+    min-height: 200px;
+}
+
+.main-catalog-image {
+    border: 3px $color-menu dotted;
+    border-radius: 25px;
+}
+
+.breadcrumb-item {
+    font-size: 25px;
+    font-family: Ablation;
+}
+
+.category-block-background {
+    height: 780px;
+    background-size: cover !important;
+}
+
+.category-block {
+    background: rgba(255, 255, 255, 0.7);
+    height: 780px;
+}
+
+.category-item-block {
+    background: rgba(255, 255, 255, 0.5);
+    border: 4px solid #DDC1A7;
+    font-size: 25px;
+    height: fit-content;
+    border-radius: 30px;
+    margin-top: 150px;
+}
+.title-category {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.price-block {
+    position: absolute;
+    bottom: 40px;
+    right: 75px;
+    width: 100px;
+    height: 30px;
+    background: #DDC1A7;
+    text-align: center;
+}
+.image-product {
+    width: 275px;
+    height: 180px;
+}
+.name-product {
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.field-validation-error {
+    color: red;
+}
+label {
+    font-size: 16px;
+    padding-top: 5px;
+}
+.btn-primary {
+    font-size: 16px;
+    background-color: #DDC1A7 !important;
+    border: none !important;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: #DDC1A7 !important;
+    border: none !important;
+}
+.checkbox-item {
+    width: 30px !important;
+    height: 30px !important;
 }

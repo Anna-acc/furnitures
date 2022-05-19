@@ -44,5 +44,12 @@ namespace FurnitureBy.Services.Interfaces
         /// </summary>
         /// <returns>Список ролей</returns>
         Task<IList<RoleDto>> GetAllRoles();
+
+        /// <summary>
+        /// Проверяет, есть ли в системе пользователь с соовествующим логином
+        /// </summary>
+        /// <param name="login">Логин</param>
+        /// <returns>Истина/Ложь</returns>
+        Task<bool> CheckLogin(string login);
     }
 }

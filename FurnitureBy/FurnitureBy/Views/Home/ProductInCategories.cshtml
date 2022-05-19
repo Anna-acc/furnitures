@@ -8,13 +8,20 @@
 <div class="row d-flex">
     @foreach (var product in Model)
     {
-        <div class="col-4">
+        <div class="col-4 mb-4 px-2">
             <a asp-action="Product" asp-controller="Home" asp-route-code="@product.Code">
                 <div class="col-12">
-                    <img src="~/ImagesProduct/@(product.Code).jpg" width="150"/>
-                    <div class="col-12">@product.Name</div>
+                    <div>
+                        <img src="~/ImagesProduct/@(product.Code).jpg" class="image-product" />
+                        <div class="price-block">@(product.Price.HasValue ? product.Price.Value.ToString("0.00") : "н/у")</div>
+                    </div>
+                    <div class="col-12 name-product">@product.Name</div>
                 </div>
             </a>
         </div>
     }
+</div>
+<hr />
+<div class="row">
+    @ViewBag.Description
 </div>

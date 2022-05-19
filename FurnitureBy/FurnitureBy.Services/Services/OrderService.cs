@@ -30,7 +30,7 @@ namespace FurnitureBy.Services.Services
         {
             var basket = new Order()
             {
-                NumberOrder = "Z"+ DateTime.Now.ToString("fffssmmHHddMMyyyy"),
+                NumberOrder = "Z" + DateTime.Now.ToString("fffssmmHHddMMyyyy"),
                 Status = 0,
                 IdUser = userId
             };
@@ -82,10 +82,10 @@ namespace FurnitureBy.Services.Services
 
         public async Task<IList<OrderDto>> GetAllOrders(bool isNotClient, string userName)
         {
-             var include = new Func<IQueryable<Order>, IQueryable<Order>>[]
-                {
+            var include = new Func<IQueryable<Order>, IQueryable<Order>>[]
+               {
                     x => x.Include(y => y.Products).ThenInclude(y => y.Product)
-                };
+               };
 
             return _mapper.Map<IList<OrderDto>>(await _order.GetFilter(includes: include, filter: x => x.Status != 0 && (isNotClient || x.User.Name == userName)));
         }
@@ -115,6 +115,11 @@ namespace FurnitureBy.Services.Services
             var order = await _order.Get(filter: x => x.NumberOrder == orderNumber, includes: include);
 
             return _mapper.Map<OrderDto>(order);
+        }
+
+        public async Task<bool> CheckProductInBasket(string userLogin, string codeProduct)
+        {
+            return (await _order.GetFilter(filter: x => x.User.Login == userLogin && x.Status == 0 && x.Products.Any(y => y.CodeProduct == codeProduct))).Any();
         }
     }
 }

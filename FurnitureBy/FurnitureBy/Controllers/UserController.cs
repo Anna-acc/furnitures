@@ -56,6 +56,11 @@ namespace FurnitureBy.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserDto user)
         {
+            if (await _userService.CheckLogin(user.Login))
+            {
+                ModelState.AddModelError("Login",  "Пользователь с таким именем уже есть в системе");
+            }
+
             if (ModelState.IsValid)
             {
                 user.IsActive = true;
@@ -117,6 +122,11 @@ namespace FurnitureBy.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(UserDto user)
         {
+            if (await _userService.CheckLogin(user.Login))
+            {
+                ModelState.AddModelError("Login", "Пользователь с таким именем уже есть в системе");
+            }
+
             if (ModelState.IsValid)
             {
                 user.IsActive = true;

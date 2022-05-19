@@ -5,30 +5,26 @@
 
 <h2>Каталог</h2>
 
-<div class="text-center">
+<div class="text-center mt-4">
     <div class="row d-flex">
-        <div class="col-6 font-nikainley">
+        <div class="col-6 mb-2 font-nikainley main-catalog-block">
             <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Bads)">
-                <img src="../Content/MainCategoryImages/Bads.jpg" alt="Кровати" />
-                <div class="col-12">Кровати</div>
+                <img src="~/Images/Bads.png" alt="Кровати" class="p-1 main-catalog-image" />
             </a>
         </div>
-        <div class="col-6 font-nikainley">
+        <div class="col-6 mb-2 font-nikainley main-catalog-block">
             <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Sofas)">
-                <img src="../Content/MainCategoryImages/Sofas.jpg" alt="Диваны" />
-                <div class="col-12">Диваны</div>
+                <img src="~/Images/Sofas.png" alt="Диваны" class="p-1 main-catalog-image" />
             </a>
         </div>
-        <div class="col-6 font-nikainley">
+        <div class="col-6 font-nikainley main-catalog-block">
             <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Closets)">
-                <img src="../Content/MainCategoryImages/Closets.jpg" alt="Шкафы" />
-                <div class="col-12">Шкафы</div>
+                <img src="~/Images/Closets.png" alt="Шкафы" class="p-1 main-catalog-image" />
             </a>
         </div>
-        <div class="col-6 font-nikainley">
+        <div class="col-6 font-nikainley main-catalog-block">
             <a asp-action="Categories" asp-controller="Home" asp-route-mainCategoryId="@((int)MainCategoryEnum.Tables)">
-                <img src="../Content/MainCategoryImages/Tables.jpg" alt="Столы и стулья" />
-                <div class="col-12">Столы и стулья</div>
+                <img src="~/Images/Tables.png" alt="Столы и стулья" class="p-1 main-catalog-image" />
             </a>
         </div>
     </div>

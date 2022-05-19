@@ -4,11 +4,11 @@
     ViewData["Title"] = "Список пользователей";
 }
 
-<h2>Список пользователей</h2>
+<h2 class="mb-4">Список пользователей</h2>
 
-<a asp-action="Add" asp-controller="User">Добавить</a>
+<a asp-action="Add" asp-controller="User" class="btn btn-primary mb-4">Добавить</a>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Логин</th>
@@ -25,10 +25,10 @@
                 <td>@user.Login</td>
                 <td>@user.Surname @user.Name @user.Patronymic</td>
                 <td>@user.Role.Name</td>
-                <td>@user.IsActive</td>
+                <td><input type="checkbox" disabled @if (user.IsActive) { <text>checked</text>}/></td>
                 <td>
-                    <a asp-action="Edit" asp-controller="User" asp-route-login="@user.Login">Редактировать</a>
-                    <a asp-action="Details" asp-controller="User" asp-route-login="@user.Login">Просмотреть</a>
+                    <a asp-action="Edit" asp-controller="User" asp-route-login="@user.Login" class="btn btn-primary">Редактировать</a>
+                    <a asp-action="Details" asp-controller="User" asp-route-login="@user.Login" class="btn btn-primary">Просмотреть</a>
                 </td>
             </tr>
         }

@@ -12,32 +12,42 @@
         <div class="container mb-4">
             <div class="row d-flex mb-2">
                 <div class="col-6">
-                    <img src="" alt="Лого сайта" />
+                    <img src="../Images/logo.png" alt="Лого сайта" />
                 </div>
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <div class="col-6 text-right">
-                        <a asp-controller="User" asp-action="Login">Вход</a>|
-                        <a asp-controller="User" asp-action="Register">Регистрация</a>
+                        <a asp-controller="User" asp-action="Login">ВХОД</a>|<a asp-controller="User" asp-action="Register">РЕГИСТРАЦИЯ</a>
                     </div>
                 }
                 else
                 {
                     <div class="col-6 text-right">
                         <span>@User.Identity.Name</span>
-                        <a asp-controller="User" asp-action="Profile">Личный кабинет</a>|
-                        <a asp-controller="User" asp-action="Logout">Выход</a>
+                        <a asp-controller="User" asp-action="Profile">ЛИЧНЫЙ КАБИНЕТ</a>|<a asp-controller="User" asp-action="Logout">ВЫХОД</a>
                     </div>
                 }
             </div>
             <div id="menu-block" class="row d-flex">
-                <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Catalog">Каталог</a></div>
-                <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Index">Главная</a></div>
-                <div class="col-4 menu-item text-center"><a asp-controller="Order" asp-action="AllOrders">Заказ</a></div>
                 @if (User.IsInRole("1"))
                 {
-                    <div class="col-4 menu-item text-center"><a asp-controller="User" asp-action="AllUsers">Пользователи</a></div>
-                    <div class="col-4 menu-item text-center"><a asp-controller="Product" asp-action="AllProducts">Товары</a></div>
+                    <div class="col-2 menu-item text-center"><a asp-controller="Home" asp-action="Catalog">Каталог</a></div>
+                    <div class="col-2 menu-item text-center"><a asp-controller="Home" asp-action="Index">Главная</a></div>
+                    <div class="col-2 menu-item text-center"><a asp-controller="Order" asp-action="AllOrders">Заказы</a></div>
+                    <div class="col-3 menu-item text-center"><a asp-controller="User" asp-action="AllUsers">Пользователи</a></div>
+                    <div class="col-3 menu-item text-center"><a asp-controller="Product" asp-action="AllProducts">Товары</a></div>
+                }
+                else if (User.IsInRole("2"))
+                {
+                    <div class="col-3 menu-item text-center"><a asp-controller="Home" asp-action="Catalog">Каталог</a></div>
+                    <div class="col-3 menu-item text-center"><a asp-controller="Home" asp-action="Index">Главная</a></div>
+                    <div class="col-3 menu-item text-center"><a asp-controller="Order" asp-action="AllOrders">Заказы</a></div>
+                    <div class="col-3 menu-item text-center"><a asp-controller="Product" asp-action="AllProducts">Товары</a></div>
+                }
+                else
+                {
+                    <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Catalog">Каталог</a></div>
+                    <div class="col-4 menu-item text-center"><a asp-controller="Home" asp-action="Index">Главная</a></div>
                     <div class="col-4 menu-item text-center"><a asp-controller="Order" asp-action="AllOrders">Заказы</a></div>
                 }
             </div>

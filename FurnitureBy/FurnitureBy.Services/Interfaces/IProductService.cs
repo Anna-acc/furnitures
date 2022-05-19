@@ -52,5 +52,12 @@ namespace FurnitureBy.Services.Interfaces
         /// <param name="categoryId">Id категории</param>
         /// <returns>Список товаров</returns>
         Task<IList<ProductDto>> GetProductsByCategory(string categoryId);
+
+        /// <summary>
+        /// Проверяет, есть ли товар с указанным кодом товара
+        /// </summary>
+        /// <param name="codeProduct">Код товара</param>
+        /// <returns>Истина/Ложь</returns>
+        Task<bool> CheckCodeProduct(string codeProduct);
     }
 }

@@ -63,5 +63,13 @@ namespace FurnitureBy.Services.Interfaces
         /// <param name="orderNumber">Номер заказа</param>
         /// <returns>Объект заказа</returns>
         Task<OrderDto> GetOrder(string orderNumber);
+
+        /// <summary>
+        /// Проверяет, есть ли товар в корзине пользоватея
+        /// </summary>
+        /// <param name="userLogin">Номер заказа корзины</param>
+        /// <param name="codeProduct">Код продукта</param>
+        /// <returns>Истина/Ложь</returns>
+        Task<bool> CheckProductInBasket(string userLogin, string codeProduct);
     }
 }

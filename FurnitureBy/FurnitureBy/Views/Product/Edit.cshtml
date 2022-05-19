@@ -13,105 +13,160 @@
 <form asp-action="@ViewBag.Mode" asp-controller="Product" asp-anti-forgery="true" enctype="multipart/form-data">
     <div class="validation" asp-validation-summary="ModelOnly"></div>
     <div>
-        <div class="form-group">
-            <label asp-for="Code">Код товара</label>
-            @if (isEdit)
-            {
-                <input type="text" asp-for="Code" readonly />
-            }
-            else
-            {
-                <input type="text" asp-for="Code" />
-            }
-            <span asp-validation-for="Code"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Code">Код товара</label>
+            </div>
+            <div class="col-10">
+                @if (isEdit)
+                {
+                    <input type="text" asp-for="Code" readonly class="form-control" />
+                }
+                else
+                {
+                    <input type="text" asp-for="Code" class="form-control" />
+                }
+                <span asp-validation-for="Code"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Name">Наименование</label>
-            <input asp-for="Name" />
-            <span asp-validation-for="Name"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Name">Наименование</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Description">Описание</label>
-            <textarea asp-for="Description"></textarea>
-            <span asp-validation-for="Description"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Description">Описание</label>
+            </div>
+            <div class="col-10">
+                <textarea asp-for="Description" rows="5" class="form-control"></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>Категории</label>
-            <select asp-for="CategoryIds" class="selectpicker" multiple>
-                @foreach (var category in Model.AllCategories)
-                {
-                    if (Model.CategoryIds.Any(x => x == category.Id))
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label>Категории</label>
+            </div>
+            <div class="col-10">
+                <select asp-for="CategoryIds" class="selectpicker form-control" multiple>
+                    @foreach (var category in Model.AllCategories)
                     {
-                        <option value="@category.Id" selected>@category.Name</option>
+                        if (Model.CategoryIds.Any(x => x == category.Id))
+                        {
+                            <option value="@category.Id" selected>@FurnitureBy.Domain.Base.Base.GetNameMainCategory(category.ParentId): @category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">@FurnitureBy.Domain.Base.Base.GetNameMainCategory(category.ParentId): @category.Name</option>
+                        }
                     }
-                    else
-                    {
-                        <option value="@category.Id">@category.Name</option>
-                    }
-                }
-            </select>
-            <span></span>
+                </select>
+            </div>
         </div>
 
         @if (isEdit)
         {
             <div class="form-group">
-                <img src="~/ImagesProduct/@(Model.Code).jpg" width="100"/>
+                <img src="~/ImagesProduct/@(Model.Code).jpg" width="300" />
             </div>
         }
 
-        <div class="form-group">
-            <label asp-for="Image">Картинка</label>
-            <input type="file" asp-for="Image" />
-            <span asp-validation-for="Image"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Image">Изображение</label>
+            </div>
+            <div class="col-10">
+                <input type="file" asp-for="Image" class="form-control" style="height: 46px;"/>
+                <span asp-validation-for="Image"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Width">Ширина</label>
-            <input asp-for="Width" />
-            <span asp-validation-for="Width"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Width">Ширина</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Width" class="form-control" />
+                <span asp-validation-for="Width"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Height">Высота</label>
-            <input asp-for="Height" />
-            <span asp-validation-for="Height"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Height">Высота</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Length">Длина</label>
-            <input asp-for="Length" />
-            <span asp-validation-for="Length"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Length">Длина</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Length" class="form-control" />
+                <span asp-validation-for="Length"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Color">Цвет</label>
-            <input asp-for="Color" />
-            <span asp-validation-for="Color"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Color">Цвет</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Material">Материал</label>
-            <input asp-for="Material" />
-            <span asp-validation-for="Material"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Material">Материал</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Material" class="form-control" />
+                <span asp-validation-for="Material"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Gear">Механизм</label>
-            <input asp-for="Gear" />
-            <span asp-validation-for="Gear"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Gear">Механизм</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Gear" class="form-control" />
+                <span asp-validation-for="Gear"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Price">Стоимость</label>
-            <input asp-for="Price" />
-            <span asp-validation-for="Price"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Price">Стоимость</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="IsAvaible">Есть в наличии</label>
-            <input asp-for="IsAvaible" />
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="IsAvaible">Есть в наличии</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="IsAvaible" class="form-control checkbox-item" />
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="IsActive">Активен</label>
-            <input asp-for="IsActive" />
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="IsActive">Активен</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="IsActive" class="form-control checkbox-item" />
+            </div>
         </div>
-        <div class="form-group">
-            <input type="submit" value="@(isEdit ? "Редактировать": "Добавить")" class="btn btn-outline-dark" />
-            <a asp-action="AllProducts" asp-controller="Product">Отмена</a>
+        <div class="form-group mt-4">
+            <input type="submit" value="@(isEdit ? "Редактировать": "Добавить")" class="btn btn-primary" />
+            <a asp-action="AllProducts" asp-controller="Product" class="btn btn-primary">Отмена</a>
         </div>
     </div>
 </form>

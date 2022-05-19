@@ -14,7 +14,8 @@ function AddToBasket(code)
         success: function (result)
         {
             if (result) {
-                alert('Товар добавлен в корзину');
+                $("#AddToBasket").hide();
+                $("#ProductInBasket").removeClass("d-none");
             }
             else
             {

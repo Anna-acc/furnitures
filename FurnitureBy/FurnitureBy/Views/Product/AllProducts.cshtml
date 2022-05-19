@@ -4,34 +4,34 @@
     ViewData["Title"] = "Список товаров";
 }
 
-<h2>Список товаров</h2>
+<h2 class="mb-4">Список товаров</h2>
 
-<a asp-action="Add" asp-controller="Product">Добавить</a>
+<a asp-action="Add" asp-controller="Product"  class="btn btn-primary mb-4">Добавить</a>
 
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th>Действия</th>
-            <th>Код товара</th>
-            <th>Наименование</th>
-            <th>Категории</th>
-            <th>Стоимость</th>
-            <th>В наличии</th>
-            <th>Активен</th>
+            <th width="10%">Код товара</th>
+            <th width="10%">Наименование</th>
+            <th width="50%">Категории</th>
+            <th width="10%">Стоимость</th>
+            <th width="15%">В наличии</th>
+            <th width="5%">Активен</th>
+            <th width="10%">Действия</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var product in Model)
         {
-            <tr>
-                <td><a asp-action="Edit" asp-controller="Product" asp-route-code="@product.Code">Редактировать</a></td>
-                <td>@product.Code</td>
-                <td>@product.Name</td>
-                <td>@string.Join(", ", product.Categories.Select(x => x.Category.Name))</td>
-                <td>@product.Price</td>
-                <td>@product.IsAvaible</td>
-                <td>@product.IsActive</td>
-            </tr>
+        <tr>
+            <td>@product.Code</td>
+            <td>@product.Name</td>
+            <td>@string.Join(", ", product.Categories.Select(x => x.Category.Name))</td>
+            <td>@product.Price</td>
+            <td><input type="checkbox" disabled @if (product.IsAvaible) { <text> checked</text>} /></td>
+            <td><input type="checkbox" disabled @if (product.IsActive) { <text> checked</text>} /></td>
+            <td><a asp-action="Edit" asp-controller="Product" asp-route-code="@product.Code" class="btn btn-primary">Редактировать</a></td>
+        </tr>
         }
     </tbody>
 </table>

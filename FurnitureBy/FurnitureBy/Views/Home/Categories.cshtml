@@ -1,25 +1,34 @@
 ﻿@model List<FurnitureBy.Services.Models.CategoryDto>
 @{
     ViewData["Title"] = "Категория";
+    var path = "КАТАЛОГ/" + FurnitureBy.Domain.Base.Base.GetNameMainCategory(Model.FirstOrDefault().ParentId).ToUpper() + ((ViewBag.AdditionalCategory != null) ? "И СТУЛЬЯ" : "");
 }
 
-<div class="row d-flex">
-    <div class="@(ViewBag.AdditionalCategory != null ? "col-6" : "col-12")">
-        <h2>@FurnitureBy.Domain.Base.Base.GetNameMainCategory(Model.FirstOrDefault().ParentId)</h2>
-        @foreach (var category in Model)
-        {
-            <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id" asp-route-nameCategory="@category.Name">@category.Name</a></div>
-        }
-    </div>
+<div class="breadcrumb-item">
+    @path
+</div>
 
-    @if (ViewBag.AdditionalCategory != null)
-    {
-        <div class="col-6">
-            <h2>Стулья</h2>
-            @foreach (var category in ViewBag.AdditionalCategory)
+<div class="row d-flex">
+    <div class="col-12 px-0 category-block-background" style="background: url(../Images/@FurnitureBy.Domain.Base.Base.GetNameImageMainCategory(Model.FirstOrDefault().ParentId)) no-repeat">
+        <div class="col-12 d-flex justify-content-center category-block">
+            <div class="category-item-block p-3">
+                <div class="title-category">@FurnitureBy.Domain.Base.Base.GetNameMainCategory(Model.FirstOrDefault().ParentId).ToUpper()</div>
+                @foreach (var category in Model)
+                {
+                    <div class="mb-2"><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id" asp-route-nameCategory="@($"{path}/{category.Name.ToUpper()}")" asp-route-description="@category.Description">@category.Name.ToUpper()</a></div>
+                }
+            </div>
+
+            @if (ViewBag.AdditionalCategory != null)
             {
-                <div><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id" asp-route-nameCategory="@category.Name">@category.Name</a></div>
+                <div class="category-item-block p-3" style="margin-left: 100px;">
+                    <div class="title-category">СТУЛЬЯ</div>
+                    @foreach (var category in ViewBag.AdditionalCategory)
+                    {
+                        <div class="mb-2"><a asp-action="ProductInCategories" asp-controller="Home" asp-route-id="@category.Id" asp-route-nameCategory="@($"{path}/{category.Name.ToUpper()}")" asp-route-description="@category.Description">@category.Name.ToUpper()</a></div>
+                    }
+                </div>
             }
         </div>
-    }
+    </div>
 </div>

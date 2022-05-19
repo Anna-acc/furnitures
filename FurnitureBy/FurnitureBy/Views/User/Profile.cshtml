@@ -9,48 +9,76 @@
     <script>
         $(function () {
             $("#changePasswordButton").click(function () { ChangePassword($("#Login").val(), $("#newPassword").val(), $("#confirmNewPassword").val()); });
-    });
+        });
     </script>
 }
 
-<h2>@title</h2>
+<h2 class="mb-4">@title</h2>
 
 <form asp-action="@ViewBag.Mode" asp-controller="User" asp-anti-forgery="true">
     <div class="validation" asp-validation-summary="ModelOnly"></div>
     <div>
-        <div class="form-group">
-            <label asp-for="Login">Логин</label>
-            <input type="text" readonly asp-for="Login" />
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Login" сlass="form-label">Логин</label>
+            </div>
+            <div class="col-10">
+                <input type="text" class="form-control" readonly asp-for="Login" />
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Email">Email</label>
-            <input asp-for="Email" />
-            <span asp-validation-for="Email"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Email" сlass="form-label">Email</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Phone">Телефон</label>
-            <input asp-for="Phone" />
-            <span asp-validation-for="Phone"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Phone" сlass="form-label">Телефон</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Surname">Фамилия</label>
-            <input asp-for="Surname" />
-            <span asp-validation-for="Surname"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Surname" сlass="form-label">Фамилия</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Name">Имя</label>
-            <input asp-for="Name" />
-            <span asp-validation-for="Name"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Name" сlass="form-label">Имя</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Patronymic">Отчество</label>
-            <input asp-for="Patronymic" />
-            <span asp-validation-for="Patronymic"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="Patronymic" сlass="form-label">Отчество</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="Patronymic" class="form-control" />
+                <span asp-validation-for="Patronymic"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="DateBirth">Дата рождения</label>
-            <input asp-for="DateBirth" />
-            <span asp-validation-for="DateBirth"></span>
+        <div class="form-group d-flex">
+            <div class="col-2">
+                <label asp-for="DateBirth" сlass="form-label">Дата рождения</label>
+            </div>
+            <div class="col-10">
+                <input asp-for="DateBirth" class="form-control" />
+                <span asp-validation-for="DateBirth"></span>
+            </div>
         </div>
         @if (ViewBag.Mode == "Profile")
         {
@@ -58,36 +86,56 @@
         }
         else
         {
-            <div class="form-group">
-                <label asp-for="RoleId">Роль</label>
-                <select asp-for="RoleId" asp-items="ViewBag.Roles"></select>
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label asp-for="RoleId" сlass="form-label">Роль</label>
+                </div>
+                <div class="col-10">
+                    <select asp-for="RoleId" asp-items="ViewBag.Roles" class="form-control selectpicker"></select>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="IsActive">Активность</label>
-                <input asp-for="IsActive" />
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label asp-for="IsActive" сlass="form-label">Активность</label>
+                </div>
+                <div class="col-10">
+                    <input asp-for="IsActive" class="form-control checkbox-item" />
+                </div>
             </div>
         }
         <input type="hidden" asp-for="Password" />
         <input type="hidden" asp-for="ConfirmPassword" value="@Model.Password" />
         <input type="hidden" asp-for="Id" />
-        <div class="form-group">
-            <input type="submit" value="Сохранить изменения" class="btn btn-outline-dark" />
+        <div class="form-group d-flex">
+            <input type="submit" value="Сохранить изменения" class="btn btn-primary" />
+            @if (ViewBag.Mode != "Profile")
+            {
+                <a asp-action="AllUsers" asp-controller="User" class="btn btn-primary ml-2">Назад</a>
+            }
         </div>
     </div>
 </form>
 
 <div>
-    <h3>Изменить пароль</h3>
-    <div class="form-group">
-        <label id="newPasswordLabel">Пароль</label>
-        <input type="password" id="newPassword" />
+    <h3 class="mb-4">Изменить пароль</h3>
+    <div class="form-group d-flex">
+        <div class="col-2">
+            <label id="newPasswordLabel" сlass="form-label">Пароль</label>
+            </div>
+        <div class="col-10">
+            <input type="password" class="form-control" id="newPassword" />
+            </div>
+        </div>
+    <div class="form-group d-flex">
+        <div class="col-2">
+            <label id="confirmNewPasswordLabel" сlass="form-label">Подтверждение пароля</label>
+        </div>
+        <div class="col-10">
+            <input type="password" class="form-control" id="confirmNewPassword" />
+            </div>
+        </div>
+        <div class="form-group col-3">
+            <input id="changePasswordButton" type="button" value="Изменить пароль" class="btn btn-primary" />
+        </div>
     </div>
-    <div class="form-group">
-        <label id="confirmNewPasswordLabel">Подтверждение пароля</label>
-        <input type="password" id="confirmNewPassword" />
-    </div>
-    <div class="form-group">
-        <input id="changePasswordButton" type="button" value="Изменить пароль" class="btn btn-outline-dark" />
-    </div>
-</div>

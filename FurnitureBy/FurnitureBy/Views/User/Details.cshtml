@@ -6,12 +6,62 @@
 
 <h2>Просмотр информации о пользователе</h2>
 
-<div>
-    <div>Логин: @Model.Login</div>
-    <div>ФИО: @Model.Surname @Model.Name @Model.Patronymic</div>
-    <div>Email: @Model.Email</div>
-    <div>Телефон: @Model.Phone</div>
-    <div>Дата рождения: @Model.DateBirth.ToString("dd.MM.yyyy")</div>
-    <div>Роль: @Model.Role.Name</div>
-    <div>Активность: @Model.IsActive</div>
+<div style="font-size: 20px;">
+    <div class="row d-flex my-2">
+        <div class="col-2">
+            Логин
+        </div>
+        <div class="col-10">
+            @Model.Login
+        </div>
+    </div>
+    <div class="row d-flex my-2">
+        <div class="col-2">
+            ФИО
+        </div>
+        <div class="col-10">
+            @Model.Surname @Model.Name @Model.Patronymic
+        </div>
+    </div>
+    <div class="row d-flex my-2">
+        <div class="col-2">
+            Email
+        </div>
+        <div class="col-10">
+            @Model.Email
+        </div>
+    </div>
+    <div class="row d-flex my-2">
+        <div class="col-2">
+            Телефон
+        </div>
+        <div class="col-10">
+            @Model.Phone
+        </div>
+    </div>
+    <div class="row d-flex my-2">
+        <div class="col-2">
+            Дата рождения
+        </div>
+        <div class="col-10">
+            @Model.DateBirth.ToString("dd.MM.yyyy")
+        </div>
+    </div>
+    <div class="row d-flex my-2">
+        <div class="col-2">
+            Роль
+        </div>
+        <div class="col-10">
+            @Model.Role.Name
+        </div>
+    </div>
+    <div class="row d-flex my-2">
+        <div class="col-2">
+            Активность
+        </div>
+        <div class="col-10">
+            <input type="checkbox" disabled @if (Model.IsActive) { <text> checked</text>} />
+        </div>
+    </div>
+    <a asp-action="AllUsers" asp-controller="User" class="btn btn-primary mt-4">Назад</a>
 </div>

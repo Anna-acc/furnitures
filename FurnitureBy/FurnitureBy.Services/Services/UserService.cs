@@ -78,5 +78,10 @@ namespace FurnitureBy.Services.Services
         {
             return _mapper.Map<IList<RoleDto>>(await _roleRepository.GetFilter());
         }
+
+        public async Task<bool> CheckLogin(string login)
+        {
+            return (await _userRepository.GetFilter(filter: x => x.Login == login)).Any();
+        }
     }
 }

@@ -98,5 +98,10 @@ namespace FurnitureBy.Services.Services
         {
             return _mapper.Map<IList<ProductDto>>(await _products.GetFilter(filter: x => x.Categories.Any(y => y.CategoryId == categoryId) && x.IsActive));
         }
+
+        public async Task<bool> CheckCodeProduct(string codeProduct)
+        {
+            return (await _products.GetFilter(filter: x => x.Code == codeProduct)).Any();
+        }
     }
 }

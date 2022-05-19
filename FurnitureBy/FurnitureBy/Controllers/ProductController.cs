@@ -48,6 +48,14 @@ namespace FurnitureBy.Controllers
             {
                 ModelState.AddModelError("Image", "Не выбрано изображение товара");
             }
+            if (await _productService.CheckCodeProduct(productDto.Code))
+            {
+                ModelState.AddModelError("Code", "Товар с таким кодом уже имеется в системе");
+            }
+            if (productDto.IsAvaible && !productDto.Price.HasValue)
+            {
+                ModelState.AddModelError("Price", "Для товара, имеющегося в наличии должна быть указана цена");
+            }
             if (ModelState.IsValid)
             {
                 await _productService.AddProduct(productDto);
@@ -80,6 +88,10 @@ namespace FurnitureBy.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductDto productDto, IFormFile Image)
         {
+            if (productDto.IsAvaible && !productDto.Price.HasValue)
+            {
+                ModelState.AddModelError("Price", "Для товара, имеющегося в наличии должна быть указана цена");
+            }
             if (ModelState.IsValid)
             {
                 await _productService.EditProduct(productDto);
