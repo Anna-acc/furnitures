@@ -3,47 +3,72 @@
     ViewData["Title"] = "Корзина";
 }
 
-<h2>Заказ №@Model.NumberOrder</h2>
+<h2 class="mb-4">Заказ №@Model.NumberOrder</h2>
 
-<div class="row d-flex">
-    <table>
+<div class="row">
+    <table class="table col-12 text-center">
         <thead>
             <tr>
-                <th>Товар</th>
-                <th></th>
+                <th width="70%">Товар</th>
+                <th width="30%">Количество</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var product in Model.Products)
             {
-                <tr>
-                    <td>
-                        <img src="~/ImagesProduct/@(product.Product.Code).jpg" width="150" />
-                        <div class="col-12">@product.Product.Name</div>
-                    </td>
-                    <td>
-                        @product.Count
-                    </td>
-                </tr>
+            <tr>
+                <td class="d-flex">
+                    <img src="~/ImagesProduct/@(product.Product.Code).jpg" class="image-product" />
+                    <div class="ml-4 name-product">@product.Product.Name</div>
+                </td>
+                <td>
+                    @product.Count
+                </td>
+            </tr>
             }
         </tbody>
     </table>
-    <div class="col-6">
-        <div>
-            Oбщая стоимость: @Model.Price
+    <div class="col-12 mt-4" style="font-size: 20px;">
+        <div class="d-flex">
+            <div class="col-4">
+                Oбщая стоимость
+            </div>
+            <div class="col-8">
+                @Model.Price
+            </div>
         </div>
-        <div>
-            Дата оформления заказа: @Model.DateOrder
+        <div class="d-flex">
+            <div class="col-4">
+                Дата оформления заказа
+            </div>
+            <div class="col-8">
+                @Model.DateOrder
+            </div>
         </div>
-        <div>
-            Статус заказа: @FurnitureBy.Domain.Base.Base.GetNameStatusOrder(Model.Status)
+        <div class="d-flex">
+            <div class="col-4">
+                Статус заказа
+            </div>
+            <div class="col-8">
+                @FurnitureBy.Domain.Base.Base.GetNameStatusOrder(Model.Status)
+            </div>
         </div>
-        <div>
-            Адрес доставки: @Model.Address
+        <div class="d-flex">
+            <div class="col-4">
+                Адрес доставки
+            </div>
+            <div class="col-8">
+                @Model.Address
+            </div>
         </div>
-        <div>
-            ФИО Получателя: @Model.NamePerson
+        <div class="d-flex">
+            <div class="col-4">
+                ФИО Получателя
+            </div>
+            <div class="col-8">
+                @Model.NamePerson
+            </div>
         </div>
-        <a asp-action="AllOrders" asp-controller="Order">Назад</a>
+        <a asp-action="AllOrders" asp-controller="Order" class="btn btn-primary mt-4">Назад</a>
     </div>
 </div>

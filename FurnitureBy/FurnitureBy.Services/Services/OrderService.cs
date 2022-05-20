@@ -87,13 +87,18 @@ namespace FurnitureBy.Services.Services
                     x => x.Include(y => y.Products).ThenInclude(y => y.Product)
                };
 
-            return _mapper.Map<IList<OrderDto>>(await _order.GetFilter(includes: include, filter: x => x.Status != 0 && (isNotClient || x.User.Name == userName)));
+            return _mapper.Map<IList<OrderDto>>(await _order.GetFilter(includes: include, filter: x => x.Status != 0 && (isNotClient || x.User.Login == userName)));
         }
 
         public async Task ChangeCount(string productOrderId, int count)
         {
             var productOrder = await _orderProducts.Get(productOrderId);
             productOrder.Count += count;
+
+            if (productOrder.Count == 0)
+            {
+                return;
+            }
 
             await _orderProducts.Update(productOrder);
         }
@@ -120,6 +125,13 @@ namespace FurnitureBy.Services.Services
         public async Task<bool> CheckProductInBasket(string userLogin, string codeProduct)
         {
             return (await _order.GetFilter(filter: x => x.User.Login == userLogin && x.Status == 0 && x.Products.Any(y => y.CodeProduct == codeProduct))).Any();
+        }
+
+        public async Task DeleteFromBasket(string userLogin, string codeProduct)
+        {
+            var orderProducts = (await _orderProducts.GetFilter(filter: x => x.Order.User.Login == userLogin && x.Order.Status == 0 && x.CodeProduct == codeProduct)).ToList();
+
+            await _orderProducts.RemoveRange(orderProducts);
         }
     }
 }

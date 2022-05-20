@@ -71,5 +71,12 @@ namespace FurnitureBy.Services.Interfaces
         /// <param name="codeProduct">Код продукта</param>
         /// <returns>Истина/Ложь</returns>
         Task<bool> CheckProductInBasket(string userLogin, string codeProduct);
+
+        /// <summary>
+        /// Удалить из корзины продукт
+        /// </summary>
+        /// <param name="userLogin">Логин пользователя</param>
+        /// <param name="codeProduct">Код продукта</param>
+        Task DeleteFromBasket(string userLogin, string codeProduct);
     }
 }

@@ -3,51 +3,81 @@
     ViewData["Title"] = "Корзина";
 }
 
-<h2>Ваш заказ</h2>
+<h2 class="mb-4">Ваш заказ</h2>
 
-<div class="row d-flex">
-    <table>
+<div class="row">
+    <table class="table col-12 text-center">
         <thead>
             <tr>
-                <th>Товар</th>
-                <th></th>
+                <th width="50%">Товар</th>
+                <th width="20%">Стоимость, 1 шт.</th>
+                <th width="20%">Количество</th>
+                <th width="10%"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var product in Model.Products)
             {
                 <tr>
-                    <td>
-                        <img src="~/ImagesProduct/@(product.Product.Code).jpg" width="150" />
-                        <div class="col-12">@product.Product.Name</div>
+                    <td class="d-flex">
+                        <img src="~/ImagesProduct/@(product.Product.Code).jpg" class="image-product" />
+                        <div class="ml-4 name-product">@product.Product.Name</div>
                     </td>
                     <td>
-                        <a asp-action="ChangeCount" asp-controller="Order" asp-route-count="-1" asp-route-productOrderId="@product.Id">-</a>
+                        @(product.Product.Price.HasValue ? product.Product.Price.Value.ToString("0.00") : "н/у")
+                    </td>
+                    <td>
+                        @if (product.Count > 1)
+                        {
+                            <a asp-action="ChangeCount" asp-controller="Order" asp-route-count="-1" asp-route-productOrderId="@product.Id"><img src="~/Images/minus.png" width="48"></a>
+                        }
+                        else
+                        {
+                            <div width="48"></div>
+                        }
                         @product.Count
-                        <a asp-action="ChangeCount" asp-controller="Order" asp-route-count="1" asp-route-productOrderId="@product.Id">+</a>
+                        <a asp-action="ChangeCount" asp-controller="Order" asp-route-count="1" asp-route-productOrderId="@product.Id"><img src="~/Images/plus.png" width="48"></a>
+                    </td>
+                    <td>
+                        <a asp-action="DeleteFromBasket" asp-controller="Order" asp-route-productCode="@product.CodeProduct"><img src="~/Images/delete.png" width="48"></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    <form asp-action="PlaceOrder" asp-controller="Order" asp-anti-forgery="true">
-        <input asp-for="NumberOrder" hidden />
-        <input asp-for="IdUser" hidden />
-        <div class="form-group">
-            <label asp-for="Price">Итого к оплате: </label>
-            <input asp-for="Price" readonly />
-            <span asp-validation-for="Price"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Address">Адрес</label>
-            <input asp-for="Address" />
-            <span asp-validation-for="Address"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="NamePerson">ФИО Получателя</label>
-            <input asp-for="NamePerson" />
-            <span asp-validation-for="NamePerson"></span>
-        </div>
-        <input type="submit" value="Оформить заказ" class="btn btn-outline-dark" />
-    </form>
+    <div class="col-12">
+        <form asp-action="PlaceOrder" asp-controller="Order" asp-anti-forgery="true">
+            <div asp-validation-summary="ModelOnly"></div>
+            <input asp-for="NumberOrder" hidden />
+            <input asp-for="IdUser" hidden />
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label asp-for="Price">Итого к оплате: </label>
+                </div>
+                <div class="col-10">
+                    <input asp-for="Price" readonly class="form-control"/>
+                    <span asp-validation-for="Price"></span>
+                </div>
+            </div>
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label asp-for="Address">Адрес</label>
+                </div>
+                <div class="col-10">
+                    <input asp-for="Address" class="form-control"/>
+                    <span asp-validation-for="Address"></span>
+                </div>
+            </div>
+            <div class="form-group d-flex">
+                <div class="col-2">
+                    <label asp-for="NamePerson">ФИО Получателя</label>
+                </div>
+                <div class="col-10">
+                    <input asp-for="NamePerson" class="form-control"/>
+                    <span asp-validation-for="NamePerson"></span>
+                </div>
+            </div>
+            <input type="submit" value="Оформить заказ" class="btn btn-primary" />
+        </form>
+    </div>
 </div>

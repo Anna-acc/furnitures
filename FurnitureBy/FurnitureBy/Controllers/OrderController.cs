@@ -40,9 +40,16 @@ namespace FurnitureBy.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _orderService.PlaceOrder(order);
+                if (order.Price == 0)
+                {
+                    ModelState.AddModelError("", "Нельзя оформить пустой заказ");
+                }
+                else
+                {
+                    await _orderService.PlaceOrder(order);
 
-                RedirectToAction("AllOrders");
+                    RedirectToAction("AllOrders");
+                }
             }
 
             var basket = await _orderService.GetBasket(User.Identity.Name);
@@ -63,6 +70,14 @@ namespace FurnitureBy.Controllers
         public async Task<IActionResult> ChangeCount(string productOrderId, int count)
         {
             await _orderService.ChangeCount(productOrderId, count);
+
+            return RedirectToAction("Basket");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteFromBasket(string productCode)
+        {
+            await _orderService.DeleteFromBasket(User.Identity.Name, productCode);
 
             return RedirectToAction("Basket");
         }
