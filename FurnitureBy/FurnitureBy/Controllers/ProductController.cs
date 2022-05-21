@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace FurnitureBy.Controllers
 {
+    [Authorize(Roles = "1, 2")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;

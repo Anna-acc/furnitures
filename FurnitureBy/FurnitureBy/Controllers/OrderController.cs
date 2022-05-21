@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace FurnitureBy.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
@@ -21,6 +22,8 @@ namespace FurnitureBy.Controllers
             _orderService = orderService;
         }
 
+
+        [Authorize(Roles = "3")]
         [HttpPost]
         public async Task<IActionResult> AddToBasket(string productCode)
         {
@@ -29,6 +32,7 @@ namespace FurnitureBy.Controllers
             return Json(result);
         }
 
+        [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> Basket()
         {
@@ -36,6 +40,7 @@ namespace FurnitureBy.Controllers
             return View(basket);
         }
 
+        [Authorize(Roles = "3")]
         public async Task<IActionResult> PlaceOrder(OrderDto order)
         {
             if (ModelState.IsValid)
@@ -48,7 +53,7 @@ namespace FurnitureBy.Controllers
                 {
                     await _orderService.PlaceOrder(order);
 
-                    RedirectToAction("AllOrders");
+                    return RedirectToAction("AllOrders");
                 }
             }
 
@@ -66,6 +71,7 @@ namespace FurnitureBy.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> ChangeCount(string productOrderId, int count)
         {
@@ -74,6 +80,7 @@ namespace FurnitureBy.Controllers
             return RedirectToAction("Basket");
         }
 
+        [Authorize(Roles = "3")]
         [HttpGet]
         public async Task<IActionResult> DeleteFromBasket(string productCode)
         {

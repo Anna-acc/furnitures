@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FurnitureBy.Controllers
 {
@@ -103,6 +104,7 @@ namespace FurnitureBy.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet]
         public async Task<IActionResult> AllUsers()
         {
@@ -111,6 +113,7 @@ namespace FurnitureBy.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> Add()
         {
             ViewBag.Mode = "Add";
@@ -119,6 +122,7 @@ namespace FurnitureBy.Controllers
             return View("Register");
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
         public async Task<IActionResult> Add(UserDto user)
         {
@@ -141,6 +145,7 @@ namespace FurnitureBy.Controllers
             return View("Register", user);
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet]
         public async Task<IActionResult> Edit(string login)
         {
@@ -151,6 +156,7 @@ namespace FurnitureBy.Controllers
             return View("Profile", user);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
         public async Task<IActionResult> Edit(UserDto user)
         {
@@ -190,6 +196,7 @@ namespace FurnitureBy.Controllers
             return Json(new { result = true, message = "" });
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet]
         public async Task<IActionResult> Details(string login)
         {
